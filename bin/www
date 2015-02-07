@@ -20,7 +20,7 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
-
+var io = require('socket.io').listen(server); 
 /**
  * Listen on provided port, on all network interfaces.
  */
@@ -28,6 +28,46 @@ var server = http.createServer(app);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
+
+var Stopwatch = require('../models/stopwatch');
+var lengthOfTime = 240;
+var stopwatch = new Stopwatch();  
+io.sockets.on('connection', function (socket) {
+  socket.on('setTimer', function (data) {
+    console.log(data.set);
+    stopwatch.reset(data.set);
+    // lengthOfTime = data.set;
+    // io.sockets.emit('time', { time: lengthOfTime }); 
+  });
+});
+
+
+stopwatch.on('tick:stopwatch', function(time) {  
+  io.sockets.emit('time', { time: time });
+});
+
+stopwatch.on('reset:stopwatch', function(time) {  
+  io.sockets.emit('time', { time: time });
+});
+
+// stopwatch.start();
+
+io.sockets.on('connection', function (socket) {  
+  io.sockets.emit('time', { time: stopwatch.getTime() });
+
+  socket.on('click:start', function () {
+    stopwatch.start();
+  });
+
+  socket.on('click:stop', function () {
+    stopwatch.stop();
+  });
+
+  socket.on('click:reset', function () {
+    stopwatch.reset();
+  });
+}); 
+
 
 /**
  * Normalize a port into a number, string, or false.

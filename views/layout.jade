@@ -2,6 +2,24 @@ doctype html
 html
   head
     title= title
+    link(rel='stylesheet', href='/stylesheets/foundation.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Black+Ops+One')
+    script( src='/javascripts/vendor/modernizr.js')
+    script( src='/javascripts/vendor/jquery.js')
+    script( src='/javascripts/xls.js')
+    script( src='/javascripts/main.js')
   body
+    nav(class='top-bar' data-topbar role='navigation')
+      ul(class='title-area')
+        li(class='name')
+          h1
+            a(href='#') Robofest Scoreboard
+    !{error_messages} 
+    !{success_messages} 
     block content
+    script( src='/socket.io/socket.io.js')
+    script( src='/javascripts/vendor/jquery.js')
+    script( src='/javascripts/foundation.min.js')
+    script(type='text/javascript').
+      $(document).foundation();

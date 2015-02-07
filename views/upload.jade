@@ -1,0 +1,30 @@
+extends layout
+
+block content
+  
+  br
+  .row
+    button#start(class="thoughtbot") Start
+    button#stop(class="thoughtbot") Stop
+    button#reset(class="thoughtbot") Reset
+
+  .row
+    .medium-10.columns 
+      h1= title
+  br 
+
+  form#fileUpload(method="post" action="/uploads" enctype="multipart/form-data")
+    .row.collapse
+      .small-9.large-10.columns
+        input(type='file' name="myFile" placeholder='Upload scores here ...')
+        -if(message)
+          small.error !{message}
+        .small-2.columns
+          button#upload Upload
+  br
+  .row
+    .small-4.columns
+      .small-2.columns
+      input#timerLength(type='text' name="timerLength" placeholder='Timer Length in seconds ...')
+      .small-2.columns
+        button#set Set

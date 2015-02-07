@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  div
+    p= message
+    .row.medium-uncollapse.large-collapse
+      .small-6.columns#timerTitle Timer: 
+      .small-6.columns#countdown
+  include scores
