@@ -1,5 +1,10 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  .row
+    h1= title
+  .row
+    .column
+      button#display(onclick="window.location='/display';") Display
+    .column
+      button#uploads(onclick="window.location='/uploads';") Uploads
