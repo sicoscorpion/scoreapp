@@ -1,0 +1,42 @@
+extends layout
+
+block content
+  .row
+    h1 Control Screen
+  br
+  .row.medium-uncollapse.large-collapse
+    .small-4.columns
+      fieldset
+        legend Main Timer Control
+        br
+        button.small#start(class="thoughtbot") Start
+        button.small#stop(class="thoughtbot") Stop
+        button.small#reset(class="thoughtbot") Reset
+    .small-4.columns
+      fieldset
+        legend Set Timer 
+        em time in seconds
+        .small-9.columns
+          input#timerLength(type='text' name="timerLength" placeholder='Timer Length in seconds ...')
+        .small-3.columns
+          button.small#setTimer Set
+    .small-4.columns
+      fieldset
+        legend Set Title
+        em displayed beside the timer
+        .small-9.columns
+          input#timerTitleSet(type='text' name="timerTitleSet" placeholder='Timer Title ...')
+        .small-3.columns
+          button.small#setTitle Set
+  .row.medium-uncollapse.large-collapse 
+    fieldset
+      legend Upload Score File (.xlsx only)
+      form#fileUpload(method="post" action="/manager" enctype="multipart/form-data")
+        .row.collapse
+          .small-9.large-10.columns
+            input(type='file' name="myFile" placeholder='Upload scores here ...')
+            -if(message)
+              small.error !{message}
+            .small-2.columns
+              button.small#upload Upload
+  

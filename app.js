@@ -10,8 +10,7 @@ var flash = require('connect-flash');
 var Stopwatch = require('./models/stopwatch');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
-var uploads = require('./routes/uploads');
+var manager = require('./routes/manager');
 var display = require('./routes/display');
 
 var app = express();
@@ -44,8 +43,7 @@ app.use(function(req, res, next){
 process.maxTickDepth = 1000000;
 
 app.use('/', routes);
-app.use('/users', users);
-app.use('/uploads', uploads);
+app.use('/manager', manager);
 app.use('/display', display);
 
 

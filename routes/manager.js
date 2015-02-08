@@ -4,7 +4,7 @@ var util = require("util");
 var fs = require("fs");
 
 router.get('/', function(req, res, next) {
-  res.render('upload', { title: 'Score Upload' });
+  res.render('manager', { title: 'Score Upload' });
 });
 
 router.post('/', function(req, res, next){ 
@@ -18,7 +18,7 @@ router.post('/', function(req, res, next){
 			if(exists) { 
 				req.flash('success_messages', 
 				'<div data-alert class=\"alert-box success\">Got your file!<a href="#" class="close">&times;</a></div>');
-				res.redirect('/uploads')
+				res.redirect('/manager')
 			} else { 
 				res.end("Well, there is no magic for those who don’t believe in it!"); 
 			} 
@@ -27,7 +27,7 @@ router.post('/', function(req, res, next){
 		// res.redirect({message: "Hey, first would you select a file?"}, '/');
 		req.flash('error_messages', 
 			'<div data-alert class=\"alert-box alert\">Hey, first would you select a file?<a href="#" class="close">&times;</a></div>');
-		res.redirect('/uploads')
+		res.redirect('/manager')
 		// return next()
 		// return next(new Error("Hey, first would you select a file?"));
 	}
