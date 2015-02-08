@@ -8,6 +8,15 @@ block content
     .small-4.columns
       fieldset
         legend Main Timer Control
+        em displayed as main title
+        .small-9.columns
+          input#displayTitleSet(type='text' name="displayTitleSet" placeholder='Display Title ...')
+        .small-3.columns
+          button.small#setDisplayTitle Set
+  .row.medium-uncollapse.large-collapse
+    .small-4.columns
+      fieldset
+        legend Main Timer Control
         br
         button.small#start(class="thoughtbot") Start
         button.small#stop(class="thoughtbot") Stop
@@ -28,21 +37,19 @@ block content
           input#timerTitleSet(type='text' name="timerTitleSet" placeholder='Timer Title ...')
         .small-3.columns
           button.small#setTitle Set
-  .row.medium-uncollapse.large-collapse 
-    .small-5.columns
-      fieldset
-        legend Upload Score File (.xlsx only)
-        form#fileUpload(method="post" action="/manager" enctype="multipart/form-data")
-          .row.collapse
-            .small-9.large-10.columns
-              input(type='file' name="myFile" placeholder='Upload scores here ...')
-              -if(message)
-                small.error !{message}
-              .small-2.columns
-                button.small#upload Upload
-    .small-3.columns
-      fieldset
-        legend Load Scores to Display
+  .row.small-4 
+    fieldset
+      legend Scoreboard manager
+      .small-6.columns
+        label Load Scoreboard
         br
-        button.small#loadScores(class="thoughtbot") Load Scores
+        button.small#loadScores(class="thoughtbot") Load Scoreboard
+      .small-6.columns
+        label Clear Scoreboard
+        br
+        button.small#clearScores(class="thoughtbot") Clear Scoreboard
+  script(type='text/javascript').
+    window.onbeforeunload = function() {
+        return "Dude, are you sure you want to leave? Think of the kittens!";
+    }
   

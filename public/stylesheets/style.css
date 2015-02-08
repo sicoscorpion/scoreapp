@@ -4,6 +4,9 @@ body {
   background: url(../images/Audience13-14.JPG) 30% 30% repeat;
 
 }
+/*a {
+  color: white;
+}*/
 em {
   font-size: 10px;
 }
@@ -32,7 +35,7 @@ em {
 
 }
 
-#countdown, #timerTitle {
+#countdown, #timerTitle, #displayTitle {
   font-family: 'Black Ops One', cursive;
   font-size: 90px;
 }

@@ -5,6 +5,8 @@ block content
     h1= title
   .row
     .column
-      button#display(onclick="window.location='/display';") Display
+      a.button#display(href="/display" target="_blank") Display
     .column
-      button#manager(onclick="window.location='/manager';") Manager
+      a.button#manager(href="/manager" target="_blank") Manager
+    .column
+      a.button#uploader(href="/upload" target="_blank") Score Uploader

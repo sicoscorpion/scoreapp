@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  .row
+    h1 Control Screen
+  br
+  .row.medium-uncollapse.large-collapse 
+    .small-5.columns
+      fieldset
+        legend Upload Score File (.xlsx only)
+        form#fileUpload(method="post" action="/upload" enctype="multipart/form-data")
+          .row.collapse
+            .small-9.large-10.columns
+              input(type='file' name="myFile" placeholder='Upload scores here ...')
+              -if(message)
+                small.error !{message}
+              .small-2.columns
+                button.small#upload Upload

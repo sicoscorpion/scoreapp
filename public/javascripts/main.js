@@ -60,20 +60,30 @@ $(document).ready(function(){
 	socket.on('newTitle', function (data) {  
 	    $('#timerTitle').html(data.title);
 	});
+	socket.on('newDisplayTitle', function (data) {  
+	    $('#displayTitle').html(data.title);
+	});
 	socket.on('newScores', function (data) {  
 	    loadScores();
 	});
 	
+	socket.on('flushScores', function (data) {  
+	    $(".data").remove();
+	});
+
 	$('#setTimer').click(function() {
 		var t = $("#timerLength").val();
-		console.log(parseInt(t))
 	    socket.emit('setTimer', {set: t});
 	});
 
 	$('#setTitle').click(function() {
 		var t = $("#timerTitleSet").val();
-		console.log(t)
 	    socket.emit('setTitle', {set: t});
+	});
+
+	$('#setDisplayTitle').click(function() {
+		var t = $("#displayTitleSet").val();
+	    socket.emit('setDisplayTitle', {set: t});
 	});
 
 	$('#start').click(function() {
@@ -90,9 +100,12 @@ $(document).ready(function(){
 	    socket.emit('click:reset');
 	});
 
+	// Scoreboard events
 	$('#loadScores').click(function() {
 	    socket.emit('loadScores');
 	});
 
-	// loadScores();
+	$('#clearScores').click(function() {
+	    socket.emit('clearScores');
+	});
 })

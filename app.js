@@ -8,10 +8,12 @@ var bodyParser = require('body-parser');
 var multer = require('multer');
 var flash = require('connect-flash');
 var Stopwatch = require('./models/stopwatch');
+var pkg = require('./package.json');
 
 var routes = require('./routes/index');
 var manager = require('./routes/manager');
 var display = require('./routes/display');
+var upload = require('./routes/upload');
 
 var app = express();
 
@@ -44,6 +46,7 @@ process.maxTickDepth = 1000000;
 
 app.use('/', routes);
 app.use('/manager', manager);
+app.use('/upload', upload);
 app.use('/display', display);
 
 

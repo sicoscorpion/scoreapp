@@ -41,9 +41,16 @@ io.sockets.on('connection', function (socket) {
     console.log(data.set);
     io.sockets.emit('newTitle', { title: data.set });
   });
+  socket.on('setDisplayTitle', function (data) {
+    console.log(data.set);
+    io.sockets.emit('newDisplayTitle', { title: data.set });
+  });
   socket.on('loadScores', function (data) {
-    // console.log(data.set);
     io.sockets.emit('newScores');
+  });
+
+  socket.on('clearScores', function (data) {
+    io.sockets.emit('flushScores');
   });
 });
 
