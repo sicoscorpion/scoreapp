@@ -16,8 +16,10 @@ html
           h1
             a(href='/') Robofest Scoreboard
     !{error_messages} 
-    !{success_messages} 
-    block content
+    !{success_messages}
+    .background
+      .transbox
+        block content
     script( src='/socket.io/socket.io.js')
     script( src='/javascripts/vendor/jquery.js')
     script( src='/javascripts/foundation.min.js')

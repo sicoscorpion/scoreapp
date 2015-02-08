@@ -1,12 +1,29 @@
 body {
   /*padding: 50px;*/
   /*font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;*/
-}
+  /*background: url(../images/Audience13-14.JPG) 30% 30% no-repeat;*/
 
-a {
-  /*color: #00B7FF;*/
 }
-
+.background {
+	width: 100%;
+	height: 100%;
+    background: url(../images/Audience13-14.JPG) 30% 30% no-repeat;
+    border: 2px solid black;
+}
+.transbox {
+    margin: 30px;
+    background-color: #ffffff;
+    border: 1px solid black;
+    opacity: 0.9;
+    font-weight: bold;
+    color: #000000;
+    filter: alpha(opacity=60); /* For IE8 and earlier */
+}
+.transbox  {
+    margin: 5%;
+    font-weight: bold;
+    color: #000000;
+}
 #scoreboard {
   font-family: 'Black Ops One', cursive;
 
