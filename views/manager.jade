@@ -2,17 +2,26 @@ extends layout
 
 block content
   .row
-    h1 Control Screen
+    h1 Display Manager
   br
   .row.medium-uncollapse.large-collapse
     .small-4.columns
       fieldset
-        legend Main Timer Control
+        legend Main Title
         em displayed as main title
         .small-9.columns
           input#displayTitleSet(type='text' name="displayTitleSet" placeholder='Display Title ...')
         .small-3.columns
           button.small#setDisplayTitle Set
+    .small-8.columns
+      fieldset
+        legend Scoreboard manager
+        .small-6.columns
+          label Load Scoreboard
+          button.small#loadScores(class="thoughtbot") Load Scoreboard
+        .small-6.columns
+          label Clear Scoreboard
+          button.small#clearScores(class="thoughtbot") Clear Scoreboard
   .row.medium-uncollapse.large-collapse
     .small-4.columns
       fieldset
@@ -37,17 +46,7 @@ block content
           input#timerTitleSet(type='text' name="timerTitleSet" placeholder='Timer Title ...')
         .small-3.columns
           button.small#setTitle Set
-  .row.small-4 
-    fieldset
-      legend Scoreboard manager
-      .small-6.columns
-        label Load Scoreboard
-        br
-        button.small#loadScores(class="thoughtbot") Load Scoreboard
-      .small-6.columns
-        label Clear Scoreboard
-        br
-        button.small#clearScores(class="thoughtbot") Clear Scoreboard
+    
   script(type='text/javascript').
     window.onbeforeunload = function() {
         return "Dude, are you sure you want to leave? Think of the kittens!";
