@@ -4,6 +4,14 @@
  * Module dependencies.
  */
 
+// Node Time for Heroku
+if(process.env.NODETIME_ACCOUNT_KEY) {
+  require('nodetime').profile({
+    accountKey: process.env.NODETIME_ACCOUNT_KEY,
+    appName: 'My Application Name' // optional
+  });
+}
+
 var app = require('../app');
 var debug = require('debug')('scoreapp:server');
 var http = require('http');
@@ -80,6 +88,7 @@ io.sockets.on('connection', function (socket) {
     stopwatch.reset();
   });
 }); 
+
 
 
 /**
