@@ -1,9 +1,17 @@
 
-$(function() {
-	$("#start").click(function(){
-		console.log("CLICKED START");
-	});
-});
+
+function dynamicSort(property) {
+    var sortOrder = 1;
+    if(property[0] === "-") {
+        sortOrder = -1;
+        property = property.substr(1);
+    }
+    return function (a,b) {
+        var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+        return result * sortOrder;
+    }
+}
+
 function addScoreToPage(data) {
 	var dt = "<div class=\"data\"></div>"
 	var head = "<div class=\"row\"><h1 id=\"scoreboard\">SCOREBOARD</h1></div>" + 
@@ -11,13 +19,12 @@ function addScoreToPage(data) {
 		   	"<th width=\"200\">Team Number</th><th>Team Name</th>" +  
 		   	"<th>Round One</th><th>Round Two</th><th>Rank</th></tr><tbody>"
    	for (var i = 0; i < data.length; i++) {
-   		head += "<tr> <td>" + data[i].id + "</td>"
-    	head += "<td>" + data[i].name + "</td>"
+   		head += "<tr> <td>" + (data[i].id).replace(/"/g, '') + "</td>"
+    	head += "<td>" + (data[i].name).replace(/"/g, '') + "</td>"
     	head += "<td>" + data[i].roundOne + "</td>"
     	head += "<td>" + data[i].roundTwo + "</td>"
     	head += "<td>" + data[i].rank + "</td></tr>"
    	};
-	console.log(head)
 	$(".scores").html(dt);
 	$(".data").html(head);
 }
@@ -38,6 +45,7 @@ function loadScores() {
 		    	scoreHash.push(row)
 		    	
 		    }
+		    scoreHash.sort(dynamicSort("rank"));
 		    addScoreToPage(scoreHash);
 		}
 	}) 

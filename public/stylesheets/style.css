@@ -35,7 +35,11 @@ em {
 
 }
 
-#countdown, #timerTitle, #displayTitle {
+#countdown, #timerTitle {
   font-family: 'Black Ops One', cursive;
   font-size: 90px;
+}
+#displayTitle {
+  font-family: 'Black Ops One', cursive;
+  font-size: 70px;
 }

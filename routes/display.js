@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/scores', function(req, res, next) {
-  var workbook = XLSX.readFile('./public/uploads/amd_scoresheet_wolfvilleacadia.xlsx');
+  var workbook = XLSX.readFile('./public/uploads/robobowl_scoresheet_acadia.xlsx');
   var sheet_name_list = workbook.SheetNames;
   var names = new Array();
   var ids = new Array();
@@ -34,7 +34,7 @@ router.get('/scores', function(req, res, next) {
 	    	num = z[1]
 
 	    if(num >= 5) {
-	    	// console.log(num, z[0]);
+	    	console.log(num, worksheet[z].v);
 	    	if (z[0] === 'A')
 		    	ids[i] = JSON.stringify(worksheet[z].v);
 		    if (z[0] === 'B')
