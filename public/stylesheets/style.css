@@ -1,7 +1,7 @@
 body {
   /*padding: 50px;*/
   /*font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;*/
-  background: url(../images/Audience13-14.JPG) 30% 30% no-repeat;
+  background: url(../images/Audience13-14.JPG) 30% 30% repeat;
   background-size: 120%;
 }
 em {
@@ -34,9 +34,9 @@ em {
 
 #countdown, #timerTitle {
   font-family: 'Black Ops One', cursive;
-  font-size: 90px;
+  font-size: 60px;
 }
 #displayTitle {
   font-family: 'Black Ops One', cursive;
-  font-size: 70px;
+  font-size: 60px;
 }
