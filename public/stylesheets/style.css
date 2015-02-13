@@ -1,12 +1,12 @@
 body {
-  overflow: hidden;
-  /*padding: 50px;*/
-  /*font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;*/
   background: url(../images/Audience13-14.JPG) 30% 30% repeat;
   background-size: 120%;
 }
 em {
   font-size: 10px;
+}
+.display {
+    overflow: hidden;
 }
 .background {
 	width: 100%;
