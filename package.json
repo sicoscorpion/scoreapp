@@ -19,7 +19,7 @@
     "socket.io": "^0.9.17",
     "underscore": "^1.7.0",
     "xlsx": "^0.7.10",
-    "nodetime": "*",
-    "tsv": "*"
-  }
+    "nodetime": "*"
+  },
+  "engine": "node >= 0.10.0"
 }

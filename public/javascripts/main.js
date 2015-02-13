@@ -189,7 +189,6 @@ $(document).ready(function(){
 	    var m = Math.floor(t % 3600 / 60);;
 	    var s = Math.floor(t % 3600 % 60);;
 	    var time = ((h > 0 ? h + ":" : "00:0") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + ":" : "0:") + (s < 10 ? "0" : "") + s);
-	    $('#countdown').html(JSON.stringify(time));
 	    console.log(time)
 	    socket.emit('setTimer', {set: t, str: time});
 	    
