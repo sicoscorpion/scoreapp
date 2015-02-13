@@ -83,7 +83,7 @@ router.get('/scoresFLL/:max', function(req, res, next) {
 	if (data.length > 10) {
 		if (req.params.max == 30) {
 			l = data.length
-			m = l - 11
+			m = l - 12
 		} else {
 			l = req.params.max
 			m = l - 10

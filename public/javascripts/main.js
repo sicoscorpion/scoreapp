@@ -36,13 +36,15 @@ function addScoreToPageFLL(data) {
 		   	"<th width=\"200\">Team Number</th><th>Team Name</th>" +  
 		   	"<th>Round One</th><th>Round Two</th><th>Round Three<th>Highest Score</th></th><th>Rank</th></tr><tbody>"
    	for (var i = 0; i < data.length-1; i++) {
-   		head += "<tr> <td>" + data[i].id + "</td>"
-    	head += "<td>" + data[i].name + "</td>"
-    	head += "<td>" + data[i].roundOne + "</td>"
-    	head += "<td>" + data[i].roundTwo + "</td>"
-    	head += "<td>" + data[i].roundThree + "</td>"
-    	head += "<td>" + data[i].highest + "</td>"
-    	head += "<td>" + data[i].rank + "</td></tr>"
+   		if (data[i].id) {
+	   		head += "<tr> <td>" + data[i].id + "</td>"
+	    	head += "<td>" + data[i].name + "</td>"
+	    	head += "<td>" + data[i].roundOne + "</td>"
+	    	head += "<td>" + data[i].roundTwo + "</td>"
+	    	head += "<td>" + data[i].roundThree + "</td>"
+	    	head += "<td>" + data[i].highest + "</td>"
+	    	head += "<td>" + data[i].rank + "</td></tr>"
+	    }
    	};
 	$(".scoresFLL").html(dt);
 	$(".dataFLL").html(head);
@@ -108,6 +110,19 @@ function loadScoresFLL(num) {
 // jQuery.fn.exists = function(){return this.length>0;}
 
 $(document).ready(function(){
+	// function run(interval, frames) {
+	//     var int = 1;
+	    
+	//     function func() {
+	//         document.body.id = "b"+int;
+	//         int++;
+	//         if(int === frames) { int = 1; }
+	//     }
+	    
+	//     var swap = window.setInterval(func, interval);
+	// }
+
+	// run(5000, 10); //milliseconds, frames
 	var socket = io.connect(window.location.hostname);
 	var interval1 = null;
 	var interval2 = null;

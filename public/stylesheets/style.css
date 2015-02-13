@@ -1,12 +1,9 @@
 body {
   /*padding: 50px;*/
   /*font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;*/
-  background: url(../images/Audience13-14.JPG) 30% 30% repeat;
-
+  background: url(../images/Audience13-14.JPG) 30% 30% no-repeat;
+  background-size: 120%;
 }
-/*a {
-  color: white;
-}*/
 em {
   font-size: 10px;
 }
