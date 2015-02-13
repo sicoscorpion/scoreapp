@@ -4,18 +4,20 @@ block content
   div
     p= message
     .row
-      .small-6.columns
+      .small-2.columns
+        img(src="../images/flllogo.png")
+      .small-8.columns
         img(src="../images/AcadiaRobotics.jpg")
-      .small-6.columns
-        img(src="../images/robofest_words.jpg")
+      .small-2.columns
+        img(src="../images/robofest_robotM.jpg")
     br
     .row.large-uncollapse.large-collapse
-      .large-12.large-centered.columns#displayTitle(style="color:red") 
+      .large-12.large-centered.columns.text-center#displayTitle(style="color:red") 
     .row.medium-uncollapse.large-collapse
       .small-6.columns#timerTitle Timer: 
-      .small-6.columns#countdown
-  include scores
-  
+      .small-6.columns.text-center#countdown
+  include scoresHRC
+  include scoresFLL
   script(type='text/javascript').
     window.onbeforeunload = function() {
         return "Dude, are you sure you want to leave? Think of the kittens!";

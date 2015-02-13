@@ -7,21 +7,12 @@ block content
   .row.medium-uncollapse.large-collapse
     .small-4.columns
       fieldset
-        legend Main Message
+        legend Competition Title
         em displayed as main title
         .small-9.columns
           input#displayTitleSet(type='text' name="displayTitleSet" placeholder='Display Title ...')
         .small-3.columns
           button.small#setDisplayTitle Set
-    .small-8.columns
-      fieldset
-        legend Scoreboard manager
-        .small-6.columns
-          label Load Scoreboard
-          button.small#loadScores(class="thoughtbot") Load Scoreboard
-        .small-6.columns
-          label Clear Scoreboard
-          button.small#clearScores(class="thoughtbot") Clear Scoreboard
   .row.medium-uncollapse.large-collapse
     .small-4.columns
       fieldset
@@ -40,13 +31,35 @@ block content
           button.small#setTimer Set
     .small-4.columns
       fieldset
-        legend Set Title
+        legend Set Timer Title
         em displayed beside the timer
         .small-9.columns
           input#timerTitleSet(type='text' name="timerTitleSet" placeholder='Timer Title ...')
         .small-3.columns
           button.small#setTitle Set
-    
+  .row.medium-uncollapse.large-collapse
+    .small-8.columns
+      fieldset
+        legend Scoreboard manager
+        .small-6.columns
+          label Load Robofest Scoreboard
+          button.small#loadScoresHRC(class="thoughtbot") Load RobofestScoreboard 
+        .small-6.columns
+          label Load FLL Scoreboard
+          button.small#loadScoresFLL(class="thoughtbot") Load FLL Scoreboard
+        .small-6.columns
+          label Clear Scoreboard
+          button.small#clearScoresHRC(class="thoughtbot") Clear Scoreboard
+        .small-12.columns
+          fieldset
+            legend Sumo Competition Scoreboard
+            .small-6.columns
+              label Show Sumo Brackets
+              button.small#loadSumoBrackets(class="thoughtbot") Show Sumo Brackets
+            .small-6.columns
+              label Clear Sumo Brackets
+              button.small#clearSumoBrackets(class="thoughtbot") Clear Sumo Brackets
+      
   script(type='text/javascript').
     window.onbeforeunload = function() {
         return "Dude, are you sure you want to leave? Think of the kittens!";

@@ -2,12 +2,13 @@ extends layout
 
 block content
   .row
-    h1 Control Screen
+    h1 Score Uploader
   br
   .row.medium-uncollapse.large-collapse 
     .small-5.columns
       fieldset
-        legend Upload Score File (.xlsx only)
+        legend Upload Score File (.csv & .xlsx only)
+        em only 2 files are allowed: <br/> (robobowl_scoresheet_acadia.xlsx and fll_scores.csv)
         form#fileUpload(method="post" action="/upload" enctype="multipart/form-data")
           .row.collapse
             .small-9.large-10.columns

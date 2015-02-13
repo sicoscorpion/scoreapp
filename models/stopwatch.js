@@ -55,7 +55,7 @@ Stopwatch.prototype.stop = function() {
     }
 };
 
-Stopwatch.prototype.reset = function(h) {  
+Stopwatch.prototype.reset = function(h, t) {  
     console.log('Resetting Stopwatch!');
     if (h) {
     	this.hour = h*1000;
@@ -65,7 +65,7 @@ Stopwatch.prototype.reset = function(h) {
     	this.time = this.hour;	
     }
     
-    this.emit('reset:stopwatch', this.formatTime(this.time));
+    this.emit('reset:stopwatch', {time: this.formatTime(this.time), str: t});
 };
 
 Stopwatch.prototype.onTick = function() {  

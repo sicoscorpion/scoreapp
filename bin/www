@@ -42,8 +42,8 @@ var lengthOfTime = 240;
 var stopwatch = new Stopwatch();  
 io.sockets.on('connection', function (socket) {
   socket.on('setTimer', function (data) {
-    console.log(data.set);
-    stopwatch.reset(data.set);
+    console.log("IN SETTIMER", data.str);
+    stopwatch.reset(data.set, data.str);
   });
   socket.on('setTitle', function (data) {
     console.log(data.set);
@@ -53,28 +53,43 @@ io.sockets.on('connection', function (socket) {
     console.log(data.set);
     io.sockets.emit('newDisplayTitle', { title: data.set });
   });
-  socket.on('loadScores', function (data) {
-    io.sockets.emit('newScores');
+  socket.on('loadScoresHRC', function (data) {
+    io.sockets.emit('newScoresHRC');
   });
 
-  socket.on('clearScores', function (data) {
+  socket.on('clearScoresHRC', function (data) {
     io.sockets.emit('flushScores');
+  });
+
+  socket.on('loadScoresFLL', function (data) {
+    io.sockets.emit('newScoresFLL');
+  });
+
+  socket.on('clearScoresFLL', function (data) {
+    io.sockets.emit('flushScores');
+  });
+  socket.on('loadSumoBrackets', function (data) {
+    io.sockets.emit('newSumoBrackets');
+  });
+
+  socket.on('clearSumoBrackets', function (data) {
+    io.sockets.emit('flushSumoBrackets');
   });
 });
 
 
 stopwatch.on('tick:stopwatch', function(time) {  
-  io.sockets.emit('time', { time: time });
+  io.sockets.emit('time', { time: time , str: "stop"});
 });
 
-stopwatch.on('reset:stopwatch', function(time) {  
-  io.sockets.emit('time', { time: time });
+stopwatch.on('reset:stopwatch', function(data) {  
+  io.sockets.emit('time', { time: data.time, str: data.str });
 });
 
 // stopwatch.start();
 
 io.sockets.on('connection', function (socket) {  
-  io.sockets.emit('time', { time: stopwatch.getTime() });
+  io.sockets.emit('time', { time: stopwatch.getTime() , str: "connection"});
 
   socket.on('click:start', function () {
     stopwatch.start();

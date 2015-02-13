@@ -4,7 +4,7 @@ var util = require("util");
 var fs = require("fs");
 
 router.get('/', function(req, res, next) {
-  res.render('manager', { title: 'Score Upload' });
+  res.render('manager', { title: 'Competition Manager' });
 });
 
 
