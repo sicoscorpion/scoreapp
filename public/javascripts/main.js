@@ -156,13 +156,13 @@ $(document).ready(function(){
 	socket.on('newScoresFLL', function (data) {
 		interval1 = setInterval(function() {
 			loadScoresFLL(10);
-		}, 8000);
+		}, 13000);
 		interval2 = setInterval(function() {
 			loadScoresFLL(20);
-		}, 13000);
+		}, 21000);
 		interval3 = setInterval(function() {
 			loadScoresFLL(30);
-		}, 21000);
+		}, 34000);
 	});
 
 	socket.on('newSumoBrackets', function (data) {  
