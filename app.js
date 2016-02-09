@@ -31,7 +31,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session({secret: "testsecret", cookie: { maxAge: 60000 }}));
 app.use(express.static(path.join(__dirname, 'public')));
-var upload = multer({
+var uploads = multer({
   dest: "./public/uploads/",
   rename: function (fieldname, filename) {
     return filename.replace(/\W+/g, '-').toLowerCase()
