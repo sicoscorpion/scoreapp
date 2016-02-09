@@ -5,18 +5,18 @@ extends layout
       p= message
       .row
         .small-2.columns
-          img(src="../images/flllogo.png")
-        .small-8.columns
-          img(src="../images/AcadiaRobotics.jpg")
-          p.text-center
-            b robots.acadiau.ca
-        .small-2.columns
-          img(src="../images/robofest_robotM.jpg")
-      br
+          img(src="../images/flllogo.png", style="height: 100px")
+        .small-9.columns
+          img.center(src="../images/AcadiaRobotics.jpg", style="height: 140px; width: 70%; margin-left: 10%")
+          //- p.text-center
+          //-   b robots.acadiau.ca
+        .small-1.columns
+          img(src="../images/robofest_robotM.jpg", style="height: 100px")
+      //- br
       .row.large-uncollapse.large-collapse
         .large-12.large-centered.columns.text-center#displayTitle(style="color:red") 
       .row.medium-uncollapse.large-collapse
-        .small-6.columns#timerTitle Timer: 
+        .small-6.columns.text-center#timerTitle Timer: 
         .small-6.columns.text-center#countdown
     include scoresHRC
     include scoresFLL

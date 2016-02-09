@@ -13,62 +13,76 @@ function dynamicSort(property) {
 }
 
 function addScoreToPageHRC(data) {
-	var dt = "<div class=\"data\"></div>"
-	var head = "<div class=\"row\"><h1 id=\"scoreboard\">SCOREBOARD</h1></div>" + 
-		   	"<div class=\"row\"> <table><thead><tr>" +
+	var dt = "<div class=\"data score\"></div>"
+	var table = "<div class=\"row\"><h1 id=\"scoreboard\">Robofest SCOREBOARD</h1></div>" + 
+		   	"<div class=\"row\"> <table class=\" center\"><thead><tr>" +
 		   	"<th width=\"200\">Team Number</th><th>Team Name</th>" +  
-		   	"<th>Round One</th><th>Round Two</th><th>Rank</th></tr><tbody>"
-   	for (var i = 0; i < data.length; i++) {
-   		head += "<tr> <td>" + (data[i].id).replace(/"/g, '') + "</td>"
-    	head += "<td>" + (data[i].name).replace(/"/g, '') + "</td>"
-    	head += "<td>" + data[i].roundOne + "</td>"
-    	head += "<td>" + data[i].roundTwo + "</td>"
-    	head += "<td>" + data[i].rank + "</td></tr>"
+		   	"<th>Round One</th><th>Round Two</th><th>Rank</th></tr></thead><tbody>"
+   	for (var i = 0; i < data.length-1; i++) {
+   		if (data[i].id) {
+	   		table += "<tr> <td>" + data[i].id + "</td>"
+	    	table += "<td>" + data[i].name + "</td>"
+	    	table += "<td>" + data[i].roundOne + "</td>"
+	    	table += "<td>" + data[i].roundTwo + "</td>"
+	    	table += "<td>" + data[i].rank + "</td></tr>"
+	    }
    	};
+   	table + "</tbody></table></div>"
+
 	$(".scores").html(dt);
-	$(".data").html(head);
+	$(".data").html(table);
 }
 
 function addScoreToPageFLL(data) {
-	var dt = "<div class=\"dataFLL\"></div>"
-	var head = "<div class=\"row\"><h1 id=\"scoreboard\">SCOREBOARD</h1></div>" + 
-		   	"<div class=\"row\"> <table><thead><tr>" +
+	var dt = "<div class=\"dataFLL score\"></div>"
+	var table = "<div class=\"row\"><h1 id=\"scoreboard\">FLL SCOREBOARD</h1></div>" + 
+		   	"<div class=\"row\"> <table class=\" center\"><thead><tr>" +
 		   	"<th width=\"200\">Team Number</th><th>Team Name</th>" +  
-		   	"<th>Round One</th><th>Round Two</th><th>Round Three<th>Highest Score</th></th><th>Rank</th></tr><tbody>"
+		   	"<th>Round One</th><th>Round Two</th><th>Round Three<th>Highest Score</th></th><th>Rank</th></tr></thead><tbody>"
    	for (var i = 0; i < data.length-1; i++) {
    		if (data[i].id) {
-	   		head += "<tr> <td>" + data[i].id + "</td>"
-	    	head += "<td>" + data[i].name + "</td>"
-	    	head += "<td>" + data[i].roundOne + "</td>"
-	    	head += "<td>" + data[i].roundTwo + "</td>"
-	    	head += "<td>" + data[i].roundThree + "</td>"
-	    	head += "<td>" + data[i].highest + "</td>"
-	    	head += "<td>" + data[i].rank + "</td></tr>"
+	   		table += "<tr> <td>" + data[i].id + "</td>"
+	    	table += "<td>" + data[i].name + "</td>"
+	    	table += "<td>" + data[i].roundOne + "</td>"
+	    	table += "<td>" + data[i].roundTwo + "</td>"
+	    	table += "<td>" + data[i].roundThree + "</td>"
+	    	table += "<td>" + data[i].highest + "</td>"
+	    	table += "<td>" + data[i].rank + "</td></tr>"
 	    }
    	};
+   	table + "</tbody></table></div>"
 	$(".scoresFLL").html(dt);
-	$(".dataFLL").html(head);
+	$(".dataFLL").html(table);
 }
 
-function loadScoresHRC() {
+function loadScoresHRC(num) {
 	
-	$.ajax('/display/scoresHRC', {
+	$.ajax('/display/scoresHRC/'+num, {
 		type: 'get',
 		success: function(res) {
-			console.log(res.data)
 			var scoreHash = [];
-		    for (var i = 0; i < res.ids.length; i++) {
+			if (num == 10) {
+				l = res.ids.length+1 
+				m = 1
+			}
+			else {
+				l = res.ids.length+1
+				m = 0
+			}
+		    for (var i = m; i < l; i++) {
 		    	var row = {};
-		    	row.id = res.ids[i];
+		    	row.id = parseInt(res.ids[i]);
 		    	row.name = res.names[i];
-		    	row.roundOne = Math.round(parseInt(res.scores1[i]));
-		    	row.roundTwo = Math.round(parseInt(res.scores2[i]));
+		    	row.roundOne = Math.round(parseInt(res.scores1[i])) || 0;
+		    	row.roundTwo = Math.round(parseInt(res.scores2[i])) || 0;
 		    	row.rank = res.rank[i];
 		    	scoreHash.push(row)
 		    	
 		    }
-		    scoreHash.sort(dynamicSort("rank"));
+		    console.log(scoreHash)
+		    // scoreHash.sort(dynamicSort("rank"));
 		    addScoreToPageHRC(scoreHash);
+			
 		}
 	}) 
 	
@@ -124,6 +138,7 @@ $(document).ready(function(){
 
 	// run(5000, 10); //milliseconds, frames
 	var socket = io.connect(window.location.hostname);
+	
 	var interval1 = null;
 	var interval2 = null;
 	var interval3 = null;
@@ -143,6 +158,10 @@ $(document).ready(function(){
 
 	    $('#countdown').html(fill);
 	});
+	socket.on('watch:started', function (data) {  
+	    var audio = new Audio('../charge.wav');
+	    audio.play();
+	});
 	
 	socket.on('newTitle', function (data) {  
 	    $('#timerTitle').html(data.title);
@@ -151,18 +170,26 @@ $(document).ready(function(){
 	    $('#displayTitle').html(data.title);
 	});
 	socket.on('newScoresHRC', function (data) {  
-	    loadScoresHRC();
+    loadScoresHRC(10);
+    interval1 = setInterval(function() {
+			loadScoresHRC(10);
+		}, 10000);
+		interval2 = setInterval(function() {
+			loadScoresHRC(20);
+		}, 20000);
 	});
 	socket.on('newScoresFLL', function (data) {
+		loadScoresFLL(11);
+
 		interval1 = setInterval(function() {
-			loadScoresFLL(10);
-		}, 13000);
+			loadScoresFLL(11);
+		}, 10000);
 		interval2 = setInterval(function() {
-			loadScoresFLL(20);
-		}, 21000);
+			loadScoresFLL(21);
+		}, 20000);
 		interval3 = setInterval(function() {
-			loadScoresFLL(30);
-		}, 34000);
+			loadScoresFLL(31);
+		}, 30000);
 	});
 
 	socket.on('newSumoBrackets', function (data) {  
@@ -206,8 +233,8 @@ $(document).ready(function(){
 
 	$('#start').click(function() {
 	    socket.emit('click:start');
-	    var audio = new Audio('../charge.wav');
-	    audio.play();
+	    // var audio = new Audio('../charge.wav');
+	    // audio.play();
 	});
 
 	$('#stop').click(function() {

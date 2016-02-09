@@ -92,6 +92,7 @@ io.sockets.on('connection', function (socket) {
   io.sockets.emit('time', { time: stopwatch.getTime() , str: "connection"});
 
   socket.on('click:start', function () {
+    io.sockets.emit('watch:started');
     stopwatch.start();
   });
 

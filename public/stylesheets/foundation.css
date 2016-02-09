@@ -4968,7 +4968,7 @@ table {
     color: #222222;
     text-align: left; }
   table tr.even, table tr.alt, table tr:nth-of-type(even) {
-    background: #F9F9F9; }
+    background: #EEE8E8; }
   table thead tr th,
   table tfoot tr th,
   table tfoot tr td,

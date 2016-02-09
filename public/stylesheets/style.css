@@ -5,6 +5,9 @@ body {
 em {
   font-size: 10px;
 }
+.row {
+  max-width: 90%;
+}
 .display {
     overflow: hidden;
 }
@@ -24,13 +27,13 @@ em {
     filter: alpha(opacity=60); /* For IE8 and earlier */
 }
 .transbox  {
-    margin: 5%;
+    margin: 2%;
     font-weight: bold;
     color: #000000;
 }
 #scoreboard {
   font-family: 'Black Ops One', cursive;
-
+  font-size: 30px;
 }
 
 #countdown, #timerTitle {
@@ -40,4 +43,23 @@ em {
 #displayTitle {
   font-family: 'Black Ops One', cursive;
   font-size: 60px;
+}
+
+.score table tr td {
+  font-size: 1.6rem;
+}
+
+.score table thead tr th {
+  font-size: 1.4rem;
+  font-weight: bold;
+  /*text-transform: uppercase;*/
+  color: darkred;
+}
+
+.center {
+    margin: auto;
+    margin-bottom: 5px;
+    width: 90%;
+    /*border: 3px solid darkred;*/
+    padding: 10px;
 }
