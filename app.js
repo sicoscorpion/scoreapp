@@ -7,8 +7,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var multer = require('multer');
 var flash = require('connect-flash');
-var socketioJwt = require('socketio-jwt');
-
 var Stopwatch = require('./models/stopwatch');
 var pkg = require('./package.json');
 
