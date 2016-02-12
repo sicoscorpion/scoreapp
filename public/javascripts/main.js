@@ -14,7 +14,7 @@ function dynamicSort(property) {
 
 function addScoreToPageHRC(data) {
 	var dt = "<div class=\"data score\"></div>"
-	var table = "<div class=\"row\"><h1 id=\"scoreboard\">Robofest SCOREBOARD</h1></div>" + 
+	var table = 
 		   	"<div class=\"row\"> <table class=\" center\"><thead><tr>" +
 		   	"<th width=\"200\">Team Number</th><th>Team Name</th>" +  
 		   	"<th>Round One</th><th>Round Two</th><th>Rank</th></tr></thead><tbody>"
@@ -35,7 +35,7 @@ function addScoreToPageHRC(data) {
 
 function addScoreToPageFLL(data) {
 	var dt = "<div class=\"dataFLL score\"></div>"
-	var table = "<div class=\"row\"><h1 id=\"scoreboard\">FLL SCOREBOARD</h1></div>" + 
+	var table = 
 		   	"<div class=\"row\"> <table class=\" center\"><thead><tr>" +
 		   	"<th width=\"200\">Team Number</th><th>Team Name</th>" +  
 		   	"<th>Round One</th><th>Round Two</th><th>Round Three<th>Highest Score</th></th><th>Rank</th></tr></thead><tbody>"
@@ -138,7 +138,7 @@ $(document).ready(function(){
 
 	// run(5000, 10); //milliseconds, frames
 	var socket = io.connect(window.location.hostname);
-	
+
 	var interval1 = null;
 	var interval2 = null;
 	var interval3 = null;

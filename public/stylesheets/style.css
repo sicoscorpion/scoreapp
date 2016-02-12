@@ -18,7 +18,7 @@ em {
     /*border: 2px solid black;*/
 }
 .transbox {
-    margin: 30px;
+    /*margin: 30px;*/
     background-color: #ffffff;
     border: 1px solid black;
     opacity: 0.9;
@@ -26,35 +26,115 @@ em {
     color: #000000;
     filter: alpha(opacity=60); /* For IE8 and earlier */
 }
-.transbox  {
-    margin: 2%;
+
+
+@media screen and (max-width : 1023px)
+{
+  .score table tr td {
+    font-size: 1rem;
+  }
+
+  .score table thead tr th {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: darkred;
+  }
+  .transbox  {
+    /*margin: 2%;*/
     font-weight: bold;
     color: #000000;
-}
-#scoreboard {
-  font-family: 'Black Ops One', cursive;
-  font-size: 30px;
+  }
+  #scoreboard {
+    font-family: 'Black Ops One', cursive;
+    font-size: 30px;
+  }
+
+  #countdown, #timerTitle {
+    font-family: 'Black Ops One', cursive;
+    font-size: 30px;
+  }
+  #displayTitle {
+    font-family: 'Black Ops One', cursive;
+    font-size: 30px;
+  }
+
 }
 
-#countdown, #timerTitle {
-  font-family: 'Black Ops One', cursive;
-  font-size: 60px;
+  
+@media screen and (min-width : 1024px)
+{
+  .score table tr td {
+    font-size: 1rem;
+  }
+
+  .score table thead tr th {
+    font-size: 1rem;
+    font-weight: bold;
+    color: darkred;
+  }
+  .transbox  {
+    /*margin: 2%;*/
+    font-weight: bold;
+    color: #000000;
+  }
+  #scoreboard {
+    font-family: 'Black Ops One', cursive;
+    font-size: 30px;
+  }
+
+  #countdown, #timerTitle {
+    font-family: 'Black Ops One', cursive;
+    font-size: 40px;
+  }
+  #displayTitle {
+    font-family: 'Black Ops One', cursive;
+    font-size: 40px;
+  }
+
 }
-#displayTitle {
-  font-family: 'Black Ops One', cursive;
-  font-size: 60px;
+@media screen and (min-width : 1204px)
+{
+  .score table tr td {
+    font-size: 1.4rem;
+  }
+
+  .score table thead tr th {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: darkred;
+  }
+
+  .transbox  {
+    /*margin: 2%;*/
+    font-weight: bold;
+    color: #000000;
+  }
+  #scoreboard {
+    font-family: 'Black Ops One', cursive;
+    font-size: 30px;
+  }
+
+  #countdown, #timerTitle {
+    font-family: 'Black Ops One', cursive;
+    font-size: 60px;
+  }
+  #displayTitle {
+    font-family: 'Black Ops One', cursive;
+    font-size: 60px;
+  }
+
 }
 
-.score table tr td {
+
+/*.score table tr td {
   font-size: 1.6rem;
 }
 
 .score table thead tr th {
   font-size: 1.4rem;
   font-weight: bold;
-  /*text-transform: uppercase;*/
   color: darkred;
-}
+}*/
 
 .center {
     margin: auto;
