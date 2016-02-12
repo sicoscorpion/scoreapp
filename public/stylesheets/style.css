@@ -95,17 +95,17 @@ em {
 @media screen and (min-width : 1204px)
 {
   .score table tr td {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
   }
 
   .score table thead tr th {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     font-weight: bold;
     color: darkred;
   }
 
   .transbox  {
-    /*margin: 2%;*/
+    margin: 2%;
     font-weight: bold;
     color: #000000;
   }
