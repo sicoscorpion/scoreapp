@@ -193,7 +193,7 @@ $(document).ready(function(){
 	});
 
 	socket.on('newSumoBrackets', function (data) {
-	    $(".sumoBrackets").html("<iframe src=\"http:\/\/challonge.com\/rpcSumo\/module?multiplier=1.4&match_width_multiplier=2.0&theme=2987\" multiplier=\"1.4\"" +
+	    $(".sumoBrackets").html("<iframe src=\"http:\/\/challonge.com\/rpcSumo\/module?multiplier=2.0&match_width_multiplier=2.0&theme=2987\" multiplier=\"1.4\"" +
 		"width=\"100%\" height=\"600\" frameborder=\"0\" scrolling=\"no\" allowtransparency=\"true\"><\/iframe>")
 	// $(".hide #bottom_bar").hide();
 	});
