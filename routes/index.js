@@ -4,9 +4,16 @@ var pkg = require('../package.json');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { 
-  	title: 'Acadia Robotics Score App', 
+  res.render('index', {
+  	title: 'Acadia Robotics Score App',
   	version: pkg.version
+  });
+});
+
+router.get('/timer', function(req, res, next) {
+  res.render('timer', {
+    title: 'Acadia Robotics Score App',
+    version: pkg.version
   });
 });
 

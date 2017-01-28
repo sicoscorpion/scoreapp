@@ -14,9 +14,9 @@ function dynamicSort(property) {
 
 function addScoreToPageHRC(data) {
 	var dt = "<div class=\"data score\"></div>"
-	var table = 
+	var table =
 		   	"<div class=\"row\"> <table class=\" center\"><thead><tr>" +
-		   	"<th width=\"200\">Team Number</th><th>Team Name</th>" +  
+		   	"<th width=\"200\">Team Number</th><th>Team Name</th>" +
 		   	"<th>Round One</th><th>Round Two</th><th>Rank</th></tr></thead><tbody>"
    	for (var i = 0; i < data.length-1; i++) {
    		if (data[i].id) {
@@ -35,9 +35,9 @@ function addScoreToPageHRC(data) {
 
 function addScoreToPageFLL(data) {
 	var dt = "<div class=\"dataFLL score\"></div>"
-	var table = 
+	var table =
 		   	"<div class=\"row\"> <table class=\" center\"><thead><tr>" +
-		   	"<th width=\"200\">Team Number</th><th>Team Name</th>" +  
+		   	"<th width=\"200\">Team Number</th><th>Team Name</th>" +
 		   	"<th>Round One</th><th>Round Two</th><th>Round Three<th>Highest Score</th></th><th>Rank</th></tr></thead><tbody>"
    	for (var i = 0; i < data.length-1; i++) {
    		if (data[i].id) {
@@ -56,13 +56,13 @@ function addScoreToPageFLL(data) {
 }
 
 function loadScoresHRC(num) {
-	
+
 	$.ajax('/display/scoresHRC/'+num, {
 		type: 'get',
 		success: function(res) {
 			var scoreHash = [];
 			if (num == 10) {
-				l = res.ids.length+1 
+				l = res.ids.length+1
 				m = 1
 			}
 			else {
@@ -77,24 +77,24 @@ function loadScoresHRC(num) {
 		    	row.roundTwo = Math.round(parseInt(res.scores2[i])) || 0;
 		    	row.rank = res.rank[i];
 		    	scoreHash.push(row)
-		    	
+
 		    }
 		    console.log(scoreHash)
 		    // scoreHash.sort(dynamicSort("rank"));
 		    addScoreToPageHRC(scoreHash);
-			
+
 		}
-	}) 
-	
+	})
+
 }
 function loadScoresFLL(num) {
-	
+
 	$.ajax('/display/scoresFLL/'+num, {
 		type: 'get',
 		success: function(res) {
 			var scoreHash = [];
 			if (num == 10) {
-				l = res.ids.length+1 
+				l = res.ids.length+1
 				m = 1
 			}
 			else {
@@ -111,28 +111,28 @@ function loadScoresFLL(num) {
 		    	row.highest = Math.round(parseInt(res.scoresHighest[i])) || 0;
 		    	row.rank = res.rank[i];
 		    	scoreHash.push(row)
-		    	
+
 		    }
 		    console.log(scoreHash)
 		    // scoreHash.sort(dynamicSort("rank"));
 		    addScoreToPageFLL(scoreHash);
-			
+
 		}
-	}) 
-	
+	})
+
 }
 // jQuery.fn.exists = function(){return this.length>0;}
 
 $(document).ready(function(){
 	// function run(interval, frames) {
 	//     var int = 1;
-	    
+
 	//     function func() {
 	//         document.body.id = "b"+int;
 	//         int++;
 	//         if(int === frames) { int = 1; }
 	//     }
-	    
+
 	//     var swap = window.setInterval(func, interval);
 	// }
 
@@ -142,14 +142,14 @@ $(document).ready(function(){
 	var interval1 = null;
 	var interval2 = null;
 	var interval3 = null;
-	socket.on('time', function (data) { 
+	socket.on('time', function (data) {
 		var fill = data.time;
 		console.log("IN TIME", data.str)
 		if (fill === "00:00:00" && data.str === "stop") {
 			var audio = new Audio('../foghorn.wav');
 		    audio.play();
 		}
-		
+
 		if (fill === "01:00:00") {
 			console.log($("#timerLength").val())
 			var t = $("#timerLength").val();
@@ -158,18 +158,18 @@ $(document).ready(function(){
 
 	    $('#countdown').html(fill);
 	});
-	socket.on('watch:started', function (data) {  
+	socket.on('watch:started', function (data) {
 	    var audio = new Audio('../charge.wav');
 	    audio.play();
 	});
-	
-	socket.on('newTitle', function (data) {  
+
+	socket.on('newTitle', function (data) {
 	    $('#timerTitle').html(data.title);
 	});
-	socket.on('newDisplayTitle', function (data) {  
+	socket.on('newDisplayTitle', function (data) {
 	    $('#displayTitle').html(data.title);
 	});
-	socket.on('newScoresHRC', function (data) {  
+	socket.on('newScoresHRC', function (data) {
     loadScoresHRC(10);
     interval1 = setInterval(function() {
 			loadScoresHRC(10);
@@ -192,21 +192,21 @@ $(document).ready(function(){
 		}, 30000);
 	});
 
-	socket.on('newSumoBrackets', function (data) {  
-	    $(".sumoBrackets").html("<iframe src=\"http:\/\/challonge.com\/rpcSumo\/module?theme=2987\"" + 
-		"width=\"100%\" height=\"500\" frameborder=\"0\" scrolling=\"no\" allowtransparency=\"true\"><\/iframe>")
+	socket.on('newSumoBrackets', function (data) {
+	    $(".sumoBrackets").html("<iframe src=\"http:\/\/challonge.com\/rpcSumo\/module?multiplier=1.4&match_width_multiplier=2.0&theme=2987\" multiplier=\"1.4\"" +
+		"width=\"100%\" height=\"600\" frameborder=\"0\" scrolling=\"no\" allowtransparency=\"true\"><\/iframe>")
 	// $(".hide #bottom_bar").hide();
 	});
-	
-	socket.on('flushScores', function (data) { 
-		clearInterval(interval1); 
-		clearInterval(interval2); 
-		clearInterval(interval3); 
+
+	socket.on('flushScores', function (data) {
+		clearInterval(interval1);
+		clearInterval(interval2);
+		clearInterval(interval3);
 	    $(".data").remove();
 	    $(".dataFLL").remove();
-	    
+
 	});
-	socket.on('flushSumoBrackets', function (data) {  
+	socket.on('flushSumoBrackets', function (data) {
 	     $(".sumoBrackets iframe").remove();
 	});
 
@@ -218,7 +218,7 @@ $(document).ready(function(){
 	    var time = ((h > 0 ? h + ":" : "00:0") + (m > 0 ? (h > 0 && m < 10 ? "0" : "") + m + ":" : "0:") + (s < 10 ? "0" : "") + s);
 	    console.log(time)
 	    socket.emit('setTimer', {set: t, str: time});
-	    
+
 	});
 
 	$('#setTitle').click(function() {

@@ -1,26 +1,29 @@
 extends layout
 .display
   block content
-    div
-      p= message
-      .row
-        .small-2.columns
-          img(src="../images/FIRSTLegoLeague.gif", style="height: 60px; margin-top: 15px")
-        .small-9.columns
-          img.center(src="../images/AcadiaRobotics.jpg", style="height: 120px; width: 70%; margin-left: 10%")
-          //- p.text-center
-          //-   b robots.acadiau.ca
-        .small-1.columns
-          img(src="../images/robofest_robotM.jpg", style="height: 100px")
-      //- br
-      .row.large-uncollapse.large-collapse
-        .large-12.large-centered.columns.text-center#displayTitle(style="color:red") 
-      .row.medium-uncollapse.large-collapse
-        .small-6.columns.text-center#timerTitle Timer: 
-        .small-6.columns.text-center#countdown
-    include scoresHRC
-    include scoresFLL
-    script(type='text/javascript').
-      window.onbeforeunload = function() {
-          return "Dude, are you sure you want to leave? Think of the kittens!";
-      }
+    div.transbox
+      div
+        p= message
+        .row.flex-box
+          .col-sm-7
+            img(src="../images/AcadiaRobotics.jpg", style="height: 120px; width: 70%; margin-left: 10%")
+          .col-sm-2
+            img(src="../images/FIRSTLegoLeague.gif", style="height: 60px; margin-top: 18px")
+          .col-sm-1
+            img(src="../images/robofest_robotM.jpg", style="height: 100px; margin-top: 10px")
+            //- p.text-center
+            //-   b robots.acadiau.ca
+          .col-sm-1
+            img(src="../images/rpc-logo.jpeg", style="height: 100px; margin-top: 10px")
+        //- br
+        .row.flex-box
+          .col-sm-7#displayTitle(style="color:red")
+          .col-sm-2#timerTitle Timer:
+          .col-sm-3#countdown
+        .row.flex-box
+          include scoresHRC
+          include scoresFLL
+      script(type='text/javascript').
+        window.onbeforeunload = function() {
+            return "Dude, are you sure you want to leave? Think of the kittens!";
+        }

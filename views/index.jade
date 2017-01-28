@@ -1,12 +1,66 @@
 extends layout
 
 block content
-  .row
-    h1= title
-  .row
-    .column
-      a.button#display(href="/display" target="_blank") Display
-    .column
-      a.button#manager(href="/manager" target="_blank") Manager
-    .column
-      a.button#uploader(href="/upload" target="_blank") Score Uploader
+  nav.navbar.navbar-inverse(role='navigation', style='padding-left:130px;')
+    ul.nav.navbar-nav
+      li.active
+        a(href='/')
+          | Manager
+          span.sr-only (current)
+      li
+        a(href="/display" target="_blank") Display
+      //- li
+      //-   a(href="/upload" target="_blank") Score Uploader
+
+  .wrapper
+    div.row(style="background-color:whitesmoke;")
+      .col-sm-4.border-right
+        h3
+          b Display Manager
+        legend Competition
+        .input-group
+          input#displayTitleSet.form-control(type='text' name="displayTitleSet" placeholder='Competition Title displayed as main title')
+          span.input-group-btn
+            button.btn.btn-primary#setDisplayTitle(type='button') Set
+        br
+        legend Main Timer Control
+        .input-group
+          input#timerLength.form-control(type='number' name="timerLength" placeholder='Timer Length in seconds ...')
+          span.input-group-btn
+            button.btn.btn-primary#setTimer(type='button') Set
+        br
+        .input-group
+          input#timerTitleSet.form-control(type='text' name="timerTitleSet" placeholder='Timer Title ...')
+          span.input-group-btn
+            button.btn.btn-primary#setTitle(type='button') Set
+        br
+
+        label Controls:
+        .btn-group(style="margin-left:10px")
+          button.btn.btn-success#start(type='button') Start
+          button.btn.btn-danger#stop(type='button') Stop
+        div.small-space
+
+      .col-sm-4
+        h3
+          b Scoreboard Manager
+        label(style="width:200px") Robofest Scoreboard:
+        .btn-group(style="margin-left:10px")
+          button.btn.btn-success#loadScoresHRC(type='button') Load
+          button.btn.btn-danger#clearScoresHRC(type='button') Clear
+
+        div.small-space
+
+        label(style="width:200px") FIRST Scoreboard:
+        .btn-group(style="margin-left:10px")
+          button.btn.btn-success#loadScoresFLL(type='button') Load
+          button.btn.btn-danger#clearScoresHRC(type='button') Clear
+
+        div.small-space
+
+        label(style="width:200px") Sumo Scoreboard:
+        .btn-group(style="margin-left:10px")
+          button.btn.btn-success#loadSumoBrackets(type='button') Load
+          button.btn.btn-danger#clearSumoBrackets(type='button') Clear
+
+        div.small-space
