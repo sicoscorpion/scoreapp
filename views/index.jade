@@ -24,18 +24,20 @@ block content
             button.btn.btn-primary#setDisplayTitle(type='button') Set
         br
         legend Main Timer Control
-        .input-group
-          input#timerLength.form-control(type='number' name="timerLength" placeholder='Timer Length in seconds ...')
-          span.input-group-btn
-            button.btn.btn-primary#setTimer(type='button') Set
-        br
-        .input-group
-          input#timerTitleSet.form-control(type='text' name="timerTitleSet" placeholder='Timer Title ...')
-          span.input-group-btn
-            button.btn.btn-primary#setTitle(type='button') Set
+        .row
+          .col-sm-6
+            .input-group
+              input#timerLength.form-control(type='number' name="timerLength" placeholder='Timer Length in seconds ...')
+              span.input-group-btn
+                button.btn.btn-primary#setTimer(type='button') Set
+          .col-sm-6
+            .input-group
+              input#timerTitleSet.form-control(type='text' name="timerTitleSet" placeholder='Timer Title ...')
+              span.input-group-btn
+                button.btn.btn-primary#setTitle(type='button') Set
         br
 
-        label Controls:
+        label Timer Controls:
         .btn-group(style="margin-left:10px")
           button.btn.btn-success#start(type='button') Start
           button.btn.btn-danger#stop(type='button') Stop
