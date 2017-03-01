@@ -44,9 +44,18 @@ app.use(function(req, res, next){
 });
 process.maxTickDepth = 1000000;
 
+var auth = require('http-auth');
+
+var basic = auth.basic({
+        realm: "Web."
+    }, function (username, password, callback) { // Custom authentication method.
+        callback(username === process.env.APPUSER && password === process.env.APPPASS);
+    }
+);
+
 app.use('/', routes);
-app.use('/manager', manager);
-app.use('/upload', upload);
+app.use('/manager', auth.connect(basic), manager);
+app.use('/upload', auth.connect(basic), upload);
 app.use('/display', display);
 
 

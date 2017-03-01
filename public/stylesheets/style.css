@@ -112,7 +112,7 @@ em {
 @media screen and (min-width : 1204px)
 {
   .score table tr td {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
   }
 
   .score table thead tr th {
@@ -159,4 +159,8 @@ em {
     width: 90%;
     /*border: 3px solid darkred;*/
     padding: 10px;
+}
+
+table {
+  font-size: 24px;
 }

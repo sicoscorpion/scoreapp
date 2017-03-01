@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var util = require("util"); 
+var util = require("util");
 var fs = require("fs");
 var sys = require('sys');
 var XLSX = require('xlsx');
@@ -11,12 +11,13 @@ var config = JSON.parse(configurationFile);
 
 
 router.get('/', function(req, res, next) {
-  res.render('display', 
-  	{ 
+  res.render('display',
+  	{
   	  title: 'Score Display'
   	}
   );
 });
+
 
 // router.get('/scoresHRC', function(req, res, next) {
 // 	var robofestFileName = './public/uploads/' + config.score_files.ROBOFEST_SCORE_FILE;
@@ -36,7 +37,7 @@ router.get('/', function(req, res, next) {
 // 	    	c = z[1]+z[2]
 // 	    	num = parseInt(c)
 // 	    }
-// 	    else 
+// 	    else
 // 	    	num = z[1]
 
 // 	    if(num >= 5) {
@@ -67,7 +68,7 @@ router.get('/', function(req, res, next) {
 // 			rank: rank
 // 		})
 // 	});
-  
+
 // });
 
 router.get('/scoresHRC/:max', function(req, res, next) {
@@ -99,25 +100,25 @@ router.get('/scoresHRC/:max', function(req, res, next) {
 		m = 0
 	}
 	for(var i = m, x=0; i < l; i++, x++){
-		if(data[i] === "" || data[i] === '\r') { 					
+		if(data[i] === "" || data[i] === '\r') {
 			// x--;
-			continue; 
+			continue;
 		}
 
 		// fields
 		var fields = String(data[i]).split(',');
 		var fieldNum = 0;
-		
+
 
 		fields.forEach(function (field){
 			field = field.replace(/"/g, "");
 			// console.log(field + " xx ");
 			switch (fieldNum)
-			{					
+			{
 				case 0:
 					rank[x] = field
 					break;
-					
+
 				case 1:
 					ids[x] = field
 					break;
@@ -144,7 +145,7 @@ router.get('/scoresHRC/:max', function(req, res, next) {
 				rank: rank
 			})
 		});
-	
+
 });
 
 
@@ -179,25 +180,25 @@ router.get('/scoresFLL/:max', function(req, res, next) {
 		m = 0
 	}
 	for(var i = m, x=0; i < l; i++, x++){
-		if(data[i] === "" || data[i] === '\r') { 					
+		if(data[i] === "" || data[i] === '\r') {
 			// x--;
-			continue; 
+			continue;
 		}
 
 		// fields
 		var fields = String(data[i]).split(',');
 		var fieldNum = 0;
-		
+
 
 		fields.forEach(function (field){
 			field = field.replace(/"/g, "");
 			// console.log(field + " xx ");
 			switch (fieldNum)
-			{					
+			{
 				case 0:
 					rank[x] = field
 					break;
-					
+
 				case 1:
 					ids[x] = field
 					break;
@@ -231,6 +232,87 @@ router.get('/scoresFLL/:max', function(req, res, next) {
 				rank: rank
 			})
 		});
-	
+
 });
+
+
+router.get('/scoresFLL', function(req, res, next) {
+	console.log("REACHED FLL GETR");
+	var names = new Array();
+  var ids = new Array();
+  var scoresHighest = new Array();
+  var scores1 = new Array();
+  var scores2 = new Array();
+  var scores3 = new Array();
+  var rank = new Array();
+  var fllFileName =	'./public/uploads/' + config.score_files.FLL_SCORE_FILE;
+	var data = fs.readFileSync(fllFileName,'utf-8');
+
+	// Lines
+	// var l = 30;
+	// var m = 0
+	data = data.split("\n");
+ 	console.log("DATA", data)
+	for(var i = 0, x=0; i < data.length; i++, x++){
+		if(data[i] === "" || data[i] === '\r') {
+			// x--;
+			continue;
+		}
+
+		// fields
+		var fields = String(data[i]).split(',');
+		var fieldNum = 0;
+
+
+		fields.forEach(function (field){
+			field = field.replace(/"/g, "");
+			// console.log(field + " xx ");
+			switch (fieldNum)
+			{
+				case 0:
+					rank[x] = field
+					break;
+
+				case 1:
+					ids[x] = field
+					break;
+				case 2:
+					names[x] = field
+					break;
+				case 3:
+					scoresHighest[x] = field
+					break;
+				case 4:
+					scores1[x] = field
+				case 5:
+					scores2[x] = field
+				case 6:
+					scores3[x] = field
+				default:
+					break;
+			}
+			fieldNum++;
+		});
+	}
+	output = []
+	for (var i = 1; i < names.length; i++) {
+		output.push({
+			name: names[i],
+			id: ids[i],
+			round1: scores1[i],
+			round2: scores2[i],
+			round3: scores3[i],
+			scoresHighest: scoresHighest[i],
+			rank: rank[i]
+		})
+	}
+  process.nextTick(function() {
+  	res.render('fllScores',
+  	{
+  	  data: output
+  	})
+	});
+
+});
+
 module.exports = router;

@@ -1,69 +1,136 @@
 extends layout
 
 block content
-  .transbox
+  nav.navbar.navbar-inverse(role='navigation', style='padding-left:130px;')
+    ul.nav.navbar-nav
+      li.active
+        a(href='/')
+          | Manager
+          span.sr-only (current)
+      li
+        a(href="/display" target="_blank") Display
+      li
+        a(href="/upload" target="_blank") Score Uploader
 
-    .row
-      h1 Display Manager
-    br
-    .row.medium-uncollapse.large-collapse
-      .small-4.columns
-        fieldset
-          legend Competition Title
-            em displayed as main title
-          .small-9.columns
-            input#displayTitleSet(type='text' name="displayTitleSet" placeholder='Display Title ...')
-          .small-3.columns
-            button.small#setDisplayTitle Set
-    .row.medium-uncollapse.large-collapse
-      .small-4.columns
-        fieldset
-          legend Main Timer Control
-          //- em(style="color:red") Please use the set timer after reset to change the display
-          //- br
-          button.small#start(class="thoughtbot") Start
-          button.small#stop(class="thoughtbot") Stop
-          //- button.small#reset(class="thoughtbot") Reset
-      .small-4.columns
-        fieldset
-          legend Set Timer
-          .small-9.columns
-            input#timerLength(type='text' name="timerLength" placeholder='Timer Length in seconds ...')
-          .small-3.columns
-            button.small#setTimer Set
-      .small-4.columns
-        fieldset
-          legend Set Timer Title
-          //- em displayed beside the timer
-          .small-9.columns
-            input#timerTitleSet(type='text' name="timerTitleSet" placeholder='Timer Title ...')
-          .small-3.columns
-            button.small#setTitle Set
-    .row.medium-uncollapse.large-collapse
-      .small-8.columns
-        fieldset
-          legend Scoreboard manager
-          .small-6.columns
-            label Load Robofest Scoreboard
-            button.small#loadScoresHRC(class="thoughtbot") Load RobofestScoreboard
-          .small-6.columns
-            label Load FLL Scoreboard
-            button.small#loadScoresFLL(class="thoughtbot") Load FLL Scoreboard
-          .small-6.columns
-            label Clear Scoreboard
-            button.small#clearScoresHRC(class="thoughtbot") Clear Scoreboard
-          .small-12.columns
-            fieldset
-              legend Sumo Competition Scoreboard
-              .small-6.columns
-                label Show Sumo Brackets
-                button.small#loadSumoBrackets(class="thoughtbot") Show Sumo Brackets
-              .small-6.columns
-                label Clear Sumo Brackets
-                button.small#clearSumoBrackets(class="thoughtbot") Clear Sumo Brackets
+  .wrapper
+    div.row(style="background-color:whitesmoke;")
+      .col-sm-4.border-right
+        h3
+          b Display Manager
+        legend Competition
+        .input-group
+          input#displayTitleSet.form-control(type='text' name="displayTitleSet" placeholder='Competition Title displayed as main title')
+          span.input-group-btn
+            button.btn.btn-primary#setDisplayTitle(type='button') Set
+        br
+        legend Main Timer Control
+        .row
+          .col-sm-6
+            .input-group
+              input#timerLength.form-control(type='number' name="timerLength" placeholder='Timer Length in seconds ...')
+              span.input-group-btn
+                button.btn.btn-primary#setTimer(type='button') Set
+          .col-sm-6
+            .input-group
+              input#timerTitleSet.form-control(type='text' name="timerTitleSet" placeholder='Timer Title ...')
+              span.input-group-btn
+                button.btn.btn-primary#setTitle(type='button') Set
+        br
 
-  script(type='text/javascript').
-    window.onbeforeunload = function() {
-        return "Dude, are you sure you want to leave? Think of the kittens!";
-    }
+        label Timer Controls:
+        .btn-group(style="margin-left:10px")
+          button.btn.btn-success#start(type='button') Start
+          button.btn.btn-danger#stop(type='button') Stop
+        div.small-space
+
+      .col-sm-4
+        h3
+          b Scoreboard Manager
+        label(style="width:200px") Robofest Scoreboard:
+        .btn-group(style="margin-left:10px")
+          button.btn.btn-success#loadScoresHRC(type='button') Load
+          button.btn.btn-danger#clearScoresHRC(type='button') Clear
+
+        div.small-space
+
+        label(style="width:200px") FIRST Scoreboard:
+        .btn-group(style="margin-left:10px")
+          button.btn.btn-success#loadScoresFLL(type='button') Load
+          button.btn.btn-danger#clearScoresHRC(type='button') Clear
+
+        div.small-space
+
+        label(style="width:200px") Sumo Scoreboard:
+        .btn-group(style="margin-left:10px")
+          button.btn.btn-success#loadSumoBrackets(type='button') Load
+          button.btn.btn-danger#clearSumoBrackets(type='button') Clear
+
+        div.small-space
+
+//- block content
+//-   .transbox
+
+//-     .row
+//-       h1 Display Manager
+//-     br
+//-     .row.medium-uncollapse.large-collapse
+//-       .small-4.columns
+//-         fieldset
+//-           legend Competition Title
+//-             em displayed as main title
+//-           .small-9.columns
+//-             input#displayTitleSet(type='text' name="displayTitleSet" placeholder='Display Title ...')
+//-           .small-3.columns
+//-             button.small#setDisplayTitle Set
+//-     .row.medium-uncollapse.large-collapse
+//-       .small-4.columns
+//-         fieldset
+//-           legend Main Timer Control
+//-           //- em(style="color:red") Please use the set timer after reset to change the display
+//-           //- br
+//-           button.small#start(class="thoughtbot") Start
+//-           button.small#stop(class="thoughtbot") Stop
+//-           //- button.small#reset(class="thoughtbot") Reset
+//-       .small-4.columns
+//-         fieldset
+//-           legend Set Timer
+//-           .small-9.columns
+//-             input#timerLength(type='text' name="timerLength" placeholder='Timer Length in seconds ...')
+//-           .small-3.columns
+//-             button.small#setTimer Set
+//-       .small-4.columns
+//-         fieldset
+//-           legend Set Timer Title
+//-           //- em displayed beside the timer
+//-           .small-9.columns
+//-             input#timerTitleSet(type='text' name="timerTitleSet" placeholder='Timer Title ...')
+//-           .small-3.columns
+//-             button.small#setTitle Set
+//-     .row.medium-uncollapse.large-collapse
+//-       .small-8.columns
+//-         fieldset
+//-           legend Scoreboard manager
+//-           .small-6.columns
+//-             label Load Robofest Scoreboard
+//-             button.small#loadScoresHRC(class="thoughtbot") Load RobofestScoreboard
+//-           .small-6.columns
+//-             label Load FLL Scoreboard
+//-             button.small#loadScoresFLL(class="thoughtbot") Load FLL Scoreboard
+//-           .small-6.columns
+//-             label Clear Scoreboard
+//-             button.small#clearScoresHRC(class="thoughtbot") Clear Scoreboard
+//-           .small-12.columns
+//-             fieldset
+//-               legend Sumo Competition Scoreboard
+//-               .small-6.columns
+//-                 label Show Sumo Brackets
+//-                 button.small#loadSumoBrackets(class="thoughtbot") Show Sumo Brackets
+//-               .small-6.columns
+//-                 label Clear Sumo Brackets
+//-                 button.small#clearSumoBrackets(class="thoughtbot") Clear Sumo Brackets
+
+//-   script(type='text/javascript').
+//-     window.onbeforeunload = function() {
+//-         return "Dude, are you sure you want to leave? Think of the kittens!";
+//-     }
 
