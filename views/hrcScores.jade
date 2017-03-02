@@ -1,0 +1,21 @@
+//- span #{data[0].name}
+extends layout
+block content
+  .wrapper
+    div.row(style="background-color:whitesmoke;")
+      table.table.table-responsive
+        thead
+          tr
+            th Rank
+            th Team Name
+            th ID
+            th Round 1
+            th Round 2
+
+        each item in data
+          tr
+            td #{item.rank}
+            td #{item.name}
+            td #{item.id}
+            td #{item.round1}
+            td #{item.round2}

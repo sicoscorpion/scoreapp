@@ -12,12 +12,21 @@ function dynamicSort(property) {
     }
 }
 
+function scroll(speed) {
+  $('.scoreList').animate({ scrollTop: 1000 }, speed, function() {
+      $(this).animate({ scrollTop: 0 }, speed);
+  });
+}
+
+
 function addScoreToPageHRC(data) {
 	var dt = "<div class=\"data score\"></div>"
+	var tableHead = "<div class=\"row \"><table class=\" center table \"><thead><tr><th>Rank</th><th>Team Name</th>" +
+		   	"<th>Round One</th><th>Round Two</th><th>Team Number</th></tr></thead></table></div>"
+
 	var table =
-		   	"<div class=\"row\"> <table class=\" center table\"><thead><tr>" +
-		   	"<th>Rank</th><th>Team Name</th>" +
-		   	"<th>Round One</th><th>Round Two</th><th>Team Number</th></tr></thead><tbody>"
+		   	"<div class=\"row scoreList\"> <table class=\" center table\">" +
+		   	"<tbody>"
    	for (var i = 0; i < data.length-1; i++) {
    		if (data[i].id) {
 	   		table += "<tr> <td>" + data[i].rank + "</td>"
@@ -30,15 +39,17 @@ function addScoreToPageHRC(data) {
    	table + "</tbody></table></div>"
 
 	$(".scores").html(dt);
-	$(".data").html(table);
+	$(".data").html(tableHead +table);
+	setInterval(function(){scroll(20000)}, 20000 * 2);
 }
 
 function addScoreToPageFLL(data) {
 	var dt = "<div class=\"dataFLL score\"></div>"
+	var tableHead = "<div class=\"row \"><table class=\" center table \"><thead><tr><th>Rank</th><th>Team Name</th>" +
+		   	"<th>Round One</th><th>Round Two</th><th>Round Three<th>Highest Score</th></th><th>Team Number</th></tr></thead></table></div>"
 	var table =
-		   	"<div class=\"row\"> <table class=\" center table\"><thead><tr>" +
-		   	"<th>Rank</th><th>Team Name</th>" +
-		   	"<th>Round One</th><th>Round Two</th><th>Round Three<th>Highest Score</th></th><th>Team Number</th></tr></thead><tbody>"
+		   	"<div class=\"row scoreList\"> <table class=\" center table \">" +
+		   	"<tbody>"
    	for (var i = 0; i < data.length-1; i++) {
    		if (data[i].id) {
 	   		table += "<tr> <td>" + data[i].rank + "</td>"
@@ -52,7 +63,8 @@ function addScoreToPageFLL(data) {
    	};
    	table + "</tbody></table></div>"
 	$(".scoresFLL").html(dt);
-	$(".dataFLL").html(table);
+	$(".dataFLL").html(tableHead + table);
+	setInterval(function(){scroll(20000)}, 20000 * 2);
 }
 
 function loadScoresHRC(num) {
@@ -170,26 +182,26 @@ $(document).ready(function(){
 	    $('#displayTitle').html(data.title);
 	});
 	socket.on('newScoresHRC', function (data) {
-    loadScoresHRC(10);
-    interval1 = setInterval(function() {
-			loadScoresHRC(10);
-		}, 10000);
-		interval2 = setInterval(function() {
-			loadScoresHRC(20);
-		}, 20000);
+    loadScoresHRC(30);
+  //   interval1 = setInterval(function() {
+		// 	loadScoresHRC(10);
+		// }, 10000);
+		// interval2 = setInterval(function() {
+		// 	loadScoresHRC(20);
+		// }, 20000);
 	});
 	socket.on('newScoresFLL', function (data) {
-		loadScoresFLL(11);
+		loadScoresFLL(30);
 
-		interval1 = setInterval(function() {
-			loadScoresFLL(11);
-		}, 10000);
-		interval2 = setInterval(function() {
-			loadScoresFLL(21);
-		}, 20000);
-		interval3 = setInterval(function() {
-			loadScoresFLL(31);
-		}, 30000);
+		// interval1 = setInterval(function() {
+		// 	loadScoresFLL(11);
+		// }, 10000);
+		// interval2 = setInterval(function() {
+		// 	loadScoresFLL(21);
+		// }, 20000);
+		// interval3 = setInterval(function() {
+		// 	loadScoresFLL(31);
+		// }, 30000);
 	});
 
 	socket.on('newSumoBrackets', function (data) {
