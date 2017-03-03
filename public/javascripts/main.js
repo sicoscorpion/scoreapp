@@ -21,7 +21,7 @@ function scroll(speed) {
 
 function addScoreToPageHRC(data) {
 	var dt = "<div class=\"data score\"></div>"
-	var tableHead = "<div class=\"row \"><table class=\" center table \"><thead><tr><th>Rank</th><th>Team Name</th>" +
+	var tableHead = "<div class=\"row \"><table class=\" center table \"><thead><tr><th>Rank</th><th width=\"30%\">Team Name</th>" +
 		   	"<th>Round One</th><th>Round Two</th><th>Team Number</th></tr></thead></table></div>"
 
 	var table =
@@ -29,11 +29,11 @@ function addScoreToPageHRC(data) {
 		   	"<tbody>"
    	for (var i = 0; i < data.length-1; i++) {
    		if (data[i].id) {
-	   		table += "<tr> <td>" + data[i].rank + "</td>"
-	    	table += "<td>" + data[i].name + "</td>"
-	    	table += "<td>" + data[i].roundOne + "</td>"
-	    	table += "<td>" + data[i].roundTwo + "</td>"
-	    	table += "<td>" + data[i].id + "</td></tr>"
+	   		table += "<tr> <td width=\"8%\">" + data[i].rank + "</td>"
+	    	table += "<td width=\"30%\">" + data[i].name + "</td>"
+	    	table += "<td align=\"center\">" + data[i].roundOne + "</td>"
+	    	table += "<td align=\"center\">" + data[i].roundTwo + "</td>"
+	    	table += "<td align=\"center\">" + data[i].id + "</td></tr>"
 	    }
    	};
    	table + "</tbody></table></div>"
@@ -45,20 +45,20 @@ function addScoreToPageHRC(data) {
 
 function addScoreToPageFLL(data) {
 	var dt = "<div class=\"dataFLL score\"></div>"
-	var tableHead = "<div class=\"row \"><table class=\" center table \"><thead><tr><th>Rank</th><th>Team Name</th>" +
+	var tableHead = "<div class=\"row \"><table class=\" center table \"><thead><tr><th>Rank</th><th width=\"25%\">Team Name</th>" +
 		   	"<th>Round One</th><th>Round Two</th><th>Round Three<th>Highest Score</th></th><th>Team Number</th></tr></thead></table></div>"
 	var table =
 		   	"<div class=\"row scoreList\"> <table class=\" center table \">" +
 		   	"<tbody>"
    	for (var i = 0; i < data.length-1; i++) {
    		if (data[i].id) {
-	   		table += "<tr> <td>" + data[i].rank + "</td>"
-	    	table += "<td>" + data[i].name + "</td>"
-	    	table += "<td>" + data[i].roundOne + "</td>"
-	    	table += "<td>" + data[i].roundTwo + "</td>"
-	    	table += "<td>" + data[i].roundThree + "</td>"
-	    	table += "<td>" + data[i].highest + "</td>"
-	    	table += "<td>" + data[i].id + "</td></tr>"
+	   		table += "<tr> <td width=\"8%\">" + data[i].rank + "</td>"
+	    	table += "<td width=\"25%\">" + data[i].name + "</td>"
+	    	table += "<td align=\"center\">" + data[i].roundOne + "</td>"
+	    	table += "<td align=\"center\">" + data[i].roundTwo + "</td>"
+	    	table += "<td align=\"center\">" + data[i].roundThree + "</td>"
+	    	table += "<td align=\"center\">" + data[i].highest + "</td>"
+	    	table += "<td align=\"center\">" + data[i].id + "</td></tr>"
 	    }
    	};
    	table + "</tbody></table></div>"
